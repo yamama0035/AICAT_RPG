@@ -1,0 +1,41 @@
+# ビルド成果物・バイナリ
+*.exe
+*.o
+*.obj
+*.out
+*.pdb
+build/
+
+# Python キャッシュ・仮想環境
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# 外部ツール本体・巨大モデルファイル（Stable Diffusion WebUI Forge / Checkpoint等）
+stable/
+
+# 実行時に自動生成される世代バックアップ・退避アセット
+backups/
+
+# 実行時に更新されるステータスJSON・ユーザー設定・生成アセットバイナリ
+ai_status.json
+ai_status.json.tmp
+dev_memory.json
+build_preview.png
+config.json
+assets/*.png
+assets/*.wav
+assets/backgrounds/
+assets/characters/
+assets/enemies/
+assets/sounds/
+assets/ui/
+assets/misc/
+
+# OS / エディタ設定
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/

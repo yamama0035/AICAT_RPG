@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate Python scripts
+        run: python -m py_compile scripts/auto_game_dev.py
+
+      - name: Set up MSYS2 (GCC + Raylib)
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          update: false
+          install: >-
+            mingw-w64-ucrt-x86_64-gcc
+            mingw-w64-ucrt-x86_64-raylib
+
+      - name: Run C unit tests (headless)
+        shell: msys2 {0}
+        run: |
+          gcc -Wall -Wextra -Werror -std=c99 -O2 -Itests/mock -Isrc tests/test_battle.c src/battle.c src/game_data.c -o test_battle.exe
+          ./test_battle.exe
+
+      - name: Build CatRPG executable
+        shell: msys2 {0}
+        run: |
+          gcc -Wall -Wextra -std=c99 -O2 -Isrc src/cat_rpg.c src/font_loader.c src/pixel_art.c src/asset_loader.c src/ai_monitor.c src/game_data.c src/battle.c -o cat_rpg.exe -lraylib -lopengl32 -lgdi32 -lwinmm

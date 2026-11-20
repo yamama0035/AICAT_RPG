@@ -1,0 +1,6 @@
+{
+  "lmstudio_base_url": "http://127.0.0.1:1234",
+  "sd_webui_base_url": "http://127.0.0.1:7860",
+  "dashboard_port": 8080,
+  "cycle_wait_seconds": 30
+}
