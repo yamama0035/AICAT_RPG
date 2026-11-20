@@ -405,7 +405,8 @@ int main(void) {
                 DrawCircleLines((int)cx, (int)(by - 40), 46.0f, Fade(SKYBLUE, 0.55f));
             }
             if (heal_fx_timer > 0.0f) {
-                DrawCircleGradient((int)cx, (int)(by - 38), 48.0f, Fade(GREEN, 0.30f), BLANK);
+                DrawCircle((int)cx, (int)(by - 38), 46.0f, Fade(GREEN, 0.14f));
+                DrawCircle((int)cx, (int)(by - 38), 30.0f, Fade(GREEN, 0.18f));
             }
 
             Color sprite_tint = WHITE;

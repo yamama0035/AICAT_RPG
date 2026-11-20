@@ -257,8 +257,9 @@ void DrawPixelEnemy(int chapter_idx, float cx, float bottom_y, float px_size,
 
     if (charging) {
         float pulse = (sinf(time * 10.0f) + 1.0f) * 0.5f;
-        DrawCircleGradient((int)cx, (int)(bottom_y - w * 0.5f), w * (0.62f + 0.08f * pulse),
-                           Fade(RED, 0.35f + 0.25f * pulse), BLANK);
+        float rad = w * (0.62f + 0.08f * pulse);
+        DrawCircle((int)cx, (int)(bottom_y - w * 0.5f), rad, Fade(RED, 0.18f + 0.14f * pulse));
+        DrawCircle((int)cx, (int)(bottom_y - w * 0.5f), rad * 0.65f, Fade(ORANGE, 0.20f + 0.14f * pulse));
     }
     DrawPixelGrid16(sprite, x, y, px_size, EnemyPalette, tint);
 }
